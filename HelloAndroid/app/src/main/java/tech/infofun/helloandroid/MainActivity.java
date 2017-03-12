@@ -1,6 +1,7 @@
 package tech.infofun.helloandroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -26,9 +27,13 @@ public class MainActivity extends Activity {
     }
 
     public void surpreenderUsuario(View v){
-        Editable texto = this.nomeEditText.getText();
-        String msg = saudacao + " " + texto.toString();
-        this.saudacaoTextView.setText(msg);
+        Intent intent =
+                new Intent(saudacaoActivity.ACAO_EXIBIR_SAUDACAO);
 
+                intent.addCategory(saudacaoActivity.CATEGORIA_SAUDACAO);
+
+                String texto = nomeEditText.getText().toString();
+                intent.putExtra(saudacaoActivity.EXTRA_NOME_USUARIO, texto);
+                startActivity(intent);
     }
 }
