@@ -1,6 +1,8 @@
 package tech.infofun.boaviagem;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +24,11 @@ import java.util.Objects;
  * Created by tfbarbosa on 18/03/17.
  */
 
-public class ViagemListActivity extends ListActivity implements AdapterView.OnItemClickListener{
+public class ViagemListActivity extends ListActivity implements AdapterView.OnItemClickListener, DialogInterface.OnClickListener{
 
     private List<Map<String, Object>> viagens;
+    private AlertDialog alertDialog;
+    private int viagemSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -36,6 +40,8 @@ public class ViagemListActivity extends ListActivity implements AdapterView.OnIt
         SimpleAdapter adapter = new SimpleAdapter(this, listarViagens(), R.layout.lista_viagem,de,para);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
+
+        this.alertDialog = criaALertDialog();
     }
 
     private List<Map<String, Object>> listarViagens(){
@@ -59,12 +65,63 @@ public class ViagemListActivity extends ListActivity implements AdapterView.OnIt
                 return viagens;
     }
 
+
+
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Map<String, Object> map = viagens.get(position);
-        String destino = (String) map.get("destino");
-        String mensagem = "Viagem selecionada: "+ destino;
-        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this,GastoListActivity.class));
+    public void onClick(DialogInterface dialog, int item){
+        switch(item){
+            case 0:
+                startActivity(new Intent(this, ViagemActivity.class));
+                break;
+            case 1:
+                startActivity(new Intent(this, GastoActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this, GastoListActivity.class));
+                break;
+            case 3:
+                viagens.remove(this.viagemSelecionada);
+                getListView().invalidateViews();
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+        this.viagemSelecionada = position;
+        alertDialog.show();
+    }
+
+    private AlertDialog criaALertDialog(){
+        final CharSequence[] items = {
+                getString(R.string.editar),
+                getString(R.string.novo_gasto),
+                getString(R.string.gastos_realizados),
+                getString(R.string.remover)};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.opcoes);
+        builder.setItems(items, this);
+
+        return builder.create();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
