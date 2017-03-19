@@ -29,6 +29,9 @@
     <string name="editar">Editar</string>
     <string name="gastos_realizados">Gastos Realizados</string>
     <string name="opcoes">Opções</string>
+    <string name="confirmacao_exclusao_viagem">Deseja excluir a viagem?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
 
     <string-array name="categoria_gasto">
         <item>Alimentação</item>
