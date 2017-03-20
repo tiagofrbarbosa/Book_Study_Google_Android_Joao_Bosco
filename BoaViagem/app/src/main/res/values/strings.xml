@@ -32,6 +32,13 @@
     <string name="confirmacao_exclusao_viagem">Deseja excluir a viagem?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="preferencias">preferências</string>
+    <string name="modo_viagem_sumario">Determina a viagem ativa com base na data atual</string>
+    <string name="modo_viagem">Modo VIagem</string>
+    <string name="informe_valor_limite">Informe o valor limite (em %)</string>
+    <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
+    <string name="valor_limite">Alerta de gastos</string>
+    <string name="manter_conectado">Manter conectado</string>
 
     <string-array name="categoria_gasto">
         <item>Alimentação</item>
