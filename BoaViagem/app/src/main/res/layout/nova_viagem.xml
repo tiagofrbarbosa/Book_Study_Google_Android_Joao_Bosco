@@ -53,12 +53,12 @@
 
         <TableRow>
 
-            <EditText
+            <Button
                 android:id="@+id/dataChegada"
                 android:onClick="selecionarData"
                 android:text="@string/selecione"/>
 
-            <EditText
+            <Button
                 android:id="@+id/dataSaida"
                 android:onClick="selecionarData"
                 android:text="@string/selecione"/>
